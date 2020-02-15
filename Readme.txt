@@ -1,4 +1,4 @@
-This project combines the ConeGeometry and CylinderGeometry of the threejs JavaScript library.
+This project combines the ConeGeometry and CylinderGeometry of the threejs JavaScript library to achieve a pencil shape
 
 see screenshots.docx for preview
 
