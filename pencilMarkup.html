@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>pencil markup</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+<script type="text/javascript" src="lib/spidergl.js"></script>
+<script type="text/javascript" src="lib/spidergl-config.js"></script>
+<script type="text/javascript" src="primitives.js"></script>
+<script type="text/javascript" src="renderingprimitives.js"></script>
+<style>
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+    canvas{
+      background: red;
+    }
+</style>
+
+
+</head>
+<body>
+	<center>
+	<canvas id="canvas">
+		If you are seeing this message your web browser does not support the HTML5 &lt;canvas>&gt; element.
+	</canvas>
+	</center>
+
+
+
+
+
+    <script>
+
+
+        var renderer = new THREE.WebGLRenderer({
+            canvas: document.getElementById('canvas'), antialias: true
+        });
+        renderer.setClearColor(0xCCFFFF);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize( window.innerWidth, window.innerHeight);
+
+        //Camera
+        var camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 3000);
+        //Scene
+        var scene = new THREE.Scene();
+
+        var light = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(light);
+        var light1 = new THREE.PointLight(0xffffff, 0.5);
+        scene.add(light1);
+
+        //GEOMETRY MERGE
+
+        //GEOMETRY MERGE
+
+        var coneGeo = new THREE.ConeGeometry(50,70,90);
+        var material = new THREE.MeshNormalMaterial({color: 0xF7FE2E});
+
+        var cone = new THREE.Mesh(coneGeo, material);
+        cone.position.setY(130)
+
+        var cylnGeo = new THREE.CylinderGeometry(50, 50, 190, 30);
+        cone.updateMatrix();
+        cylnGeo.merge(cone.geometry, cone.matrix);
+
+        var mesh = new THREE.Mesh(cylnGeo, material);
+        scene.add(mesh);
+        mesh.position.set(0, 0, -1000);
+
+
+
+
+
+        //Render Loop
+        requestAnimationFrame(render);
+        function render() {
+          mesh.rotation.x +=0.02;
+          mesh.rotation.y +=0.08;
+          renderer.render(scene, camera);
+          requestAnimationFrame(render);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+</body>
+</html>
